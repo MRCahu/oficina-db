@@ -1,7 +1,7 @@
 -- ============================================================================
 -- SCHEMA LÓGICO - BANCO DE DADOS PARA OFICINA DE AUTOMÓVEIS
 -- Banco: oficina_db
--- Autor: Manus AI
+-- Autor: Mauro Cahu
 -- Data: 2025-02-18
 -- Normalização: 3FN (Terceira Forma Normal)
 -- ============================================================================
