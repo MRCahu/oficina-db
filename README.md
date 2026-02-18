@@ -119,5 +119,5 @@ Este projeto serve como uma base sólida. Possíveis evoluções incluem:
 ---
 
 <p align="center">
-  <em>Este projeto foi gerado e estruturado pela IA Manus, com foco em boas práticas, clareza e profissionalismo para acelerar o desenvolvimento e o aprendizado em modelagem de dados.</em>
+  <em>Este projeto foi gerado e estruturado por Mauro Cahu, com foco em boas práticas, clareza e profissionalismo para acelerar o desenvolvimento e o aprendizado em modelagem de dados.</em>
 </p>
