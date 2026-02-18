@@ -1,0 +1,120 @@
+===================================================
+      DIAGRAMA ENTIDADE-RELACIONAMENTO (TEXTUAL)
+===================================================
+
+Este diagrama descreve as relações entre as principais entidades do banco de dados da oficina.
+
+---------------------------------------------------
+Notação:
+  [Tabela]       - Representa uma entidade.
+  PK             - Chave Primária (Primary Key).
+  FK             - Chave Estrangeira (Foreign Key).
+  --1:N-->       - Relação de um para muitos.
+  --1:1-->       - Relação de um para um.
+  --N:M-->       - Relação de muitos para muitos.
+---------------------------------------------------
+
+[cliente]
+  - id (PK)
+  - cpf_cnpj (UNIQUE)
+  - email (UNIQUE)
+  |
+  +--1:N--> [endereco]
+  |           - id (PK)
+  |           - cliente_id (FK -> cliente.id)
+  |
+  +--1:N--> [telefone]
+  |           - id (PK)
+  |           - cliente_id (FK -> cliente.id)
+  |
+  +--1:N--> [veiculo]
+  |           - id (PK)
+  |           - cliente_id (FK -> cliente.id)
+  |
+  +--1:N--> [pagamento]
+              - id (PK)
+              - cliente_id (FK -> cliente.id)
+
+
+[veiculo]
+  - id (PK)
+  - placa (UNIQUE)
+  - vin (UNIQUE)
+  |
+  +--N:1--> [cliente]
+  |
+  +--1:N--> [servico]
+  |           - id (PK)
+  |           - veiculo_id (FK -> veiculo.id)
+  |
+  +--1:N--> [agendamento]
+              - id (PK)
+              - veiculo_id (FK -> veiculo.id)
+
+
+[servico]
+  - id (PK)
+  |
+  +--N:1--> [veiculo]
+  |
+  +--N:1--> [tipo_servico]
+  |
+  +--N:M--> [peca] (via [servico_peca])
+  |
+  +--N:M--> [mecanico] (via [mecanico_servico])
+  |
+  +--1:1--> [pagamento]
+              - id (PK)
+              - servico_id (FK, UNIQUE -> servico.id)
+
+
+[tipo_servico]
+  - id (PK)
+  - nome (UNIQUE)
+  |
+  +--1:N--> [servico]
+
+
+[peca]
+  - id (PK)
+  |
+  +--N:1--> [fornecedor]
+  |
+  +--N:M--> [servico] (via [servico_peca])
+
+
+[mecanico]
+  - id (PK)
+  - cpf (UNIQUE)
+  |
+  +--N:M--> [servico] (via [mecanico_servico])
+  |
+  +--1:N--> [agendamento]
+              - id (PK)
+              - mecanico_id (FK -> mecanico.id)
+
+
+[fornecedor]
+  - id (PK)
+  - cnpj (UNIQUE)
+  |
+  +--1:N--> [peca]
+
+
+---------------------------------------------------
+TABELAS DE RELACIONAMENTO (JUNÇÃO)
+---------------------------------------------------
+
+[servico_peca]  (Muitos para Muitos: servico <-> peca)
+  - id (PK)
+  - servico_id (FK -> servico.id)
+  - peca_id (FK -> peca.id)
+
+
+[mecanico_servico]  (Muitos para Muitos: mecanico <-> servico)
+  - id (PK)
+  - mecanico_id (FK -> mecanico.id)
+  - servico_id (FK -> servico.id)
+
+
+===================================================
